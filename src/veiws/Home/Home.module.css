@@ -1,0 +1,75 @@
+.homeTitle {
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    color: blue;
+}
+
+.homeList {
+    list-style: none;
+    padding: 0 20px;
+    margin: 20px 0;
+
+}
+
+.homeListItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.homeListItem> p {
+    width: 25%;
+    display: inline-block;
+    word-wrap: break-word;
+    text-transform: capitalize;
+    padding: 0 10px;
+}
+
+.homeListItem> a {
+    width: 25%;
+    display: inline-block;
+    word-wrap: break-word;
+    padding: 0 10px;
+}
+
+.homeListItem> img {
+    padding: 5px;
+}
+
+.homeListItem:nth-child(3n-7) {
+    background-color: chartreuse;
+}
+
+.homeListItem:nth-child(3n-6) {
+    background-color: coral;
+}
+
+.homeListItem:nth-child(3n-5) {
+    background-color: cyan;
+}
+
+.track {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.artist {
+    font-size: 18px;
+    font-weight: 700;
+    color: blue;
+    text-decoration: none;
+    padding: 0 10px;
+    /* transition: all 0.5s linear; */
+}
+
+.artist:focus,
+.artist:hover {
+    transform: scale(1.2, 1.2);
+}
+
+.horizontalLine {
+    border: 2px solid #000000;
+    margin: 10px 0;
+}

@@ -1,0 +1,11 @@
+.container {
+  max-width: 100%;
+  width: 1280px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+.horizontalLine {
+    border: 2px solid #000000;
+    margin: 10px 0;
+}

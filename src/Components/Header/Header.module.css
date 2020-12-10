@@ -1,0 +1,14 @@
+.siteHeader {
+    display: flex;
+    /* justify-content: start; */
+    align-items: center;
+    background: blue;
+    min-height: 100px;
+}
+
+.siteLogo {
+    font-size: 36px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 50px;
+}
