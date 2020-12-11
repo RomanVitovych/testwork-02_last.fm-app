@@ -4,14 +4,19 @@ import { Link } from 'react-router-dom';
 import imagePath from '../../image/error-404.png';
 
 import routes from '../routes';
+import styles from './NotFound.module.css';
 
 class NotFound extends Component {
     render() {
         return (
-            <div>
-                <img src={imagePath} alt="no image" width='100'  />
-                <h2>Error</h2>
-                <p>Whooops!!! <Link to={routes.home} >Link</Link> to the main page!</p>
+            <div className={styles.container}>
+                <img src={imagePath} alt="no image" width='200'  />
+                <h2 className={styles.errorTitle} >Error</h2>
+                <p className={styles.errorText}>Ooops!!! 
+                    <Link
+                    className={styles.errorLink} 
+                    to={routes.HOME} > Link </Link> to the main page!
+                </p>
             </div>
         );
     }

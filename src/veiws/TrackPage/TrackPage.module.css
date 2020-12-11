@@ -1,0 +1,99 @@
+.container {
+  max-width: 100%;
+  width: 960px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+/* ========== header list ========== */
+
+.trackPageHeaderList {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 20px;
+    margin: 20px 0;
+}
+
+.listNumbers {
+    width: 20%;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.listName {
+    width: 40%;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.horisontalLineTrackPage {
+    border: 1px solid #000000;
+    margin: 10px 0;
+}
+
+/* ========== trackPage list ========== */
+
+.trackPageList {
+    list-style: none;
+    padding: 0 20px;
+    margin: 20px 0;
+}
+
+.trackPageItem {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    margin: 20px 0;
+}
+
+.trackPageItem:focus,
+.trackPageItem:hover {
+    background: gray;
+}
+
+.symbol {
+    width: 20%;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: left;
+    color: red;
+    padding-left: 10%;
+}
+
+.trackPageName {
+    width: 40%;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: left;
+    word-wrap: break-word;
+    text-transform: capitalize;
+    padding-left: 15%;
+}
+
+/* ========== transition ========== */
+
+.enter {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+.enterActive {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 250ms linear;
+} 
+
+.exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+.exitActive {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 250ms linear;
+}

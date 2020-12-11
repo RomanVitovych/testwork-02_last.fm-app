@@ -7,10 +7,14 @@ import styles from './Header.module.css';
 
 const Header = () => {
     return (
-        <header className={styles.siteHeader} >
-            <h1 className={styles.siteLogo} >Last.fm</h1>
-            <Navigation />
-        </header>
+        <div className={styles.backColor}>
+            <div className={styles.container} >
+                <header className={styles.siteHeader} >
+                    <h1 className={styles.siteLogo} >Last.fm</h1>
+                    <Navigation />
+                </header>
+            </div>
+        </div>
     );
 };
 

@@ -36,9 +36,10 @@ class TrackDetailsPage extends Component {
 
     render() {
         const {artist, error, message} = this.state;
-        console.log(artist);
+        // console.log(artist);
+        // console.log(Object.keys(artist).length);
         return (
-            <>
+            <div className={styles.container}>
                <button
                className={styles.buttonGoBack}
                type='button' 
@@ -48,17 +49,37 @@ class TrackDetailsPage extends Component {
 
                 {error && <ErrorNotification message={message} />}
 
-                {!artist ? <Load /> :
-                <ul>
-                    <li>
-                        <h3>{artist.name}</h3>
-                        {/* <img src={artist.image.find(el => el.size === 'large')['#text']} /> */}
-                        {/* {tags.map(tag)<a></a>} */}
-                        {/* <p>{artist.bio.summary}</p> */}
+                {Object.keys(artist).length <= 0 ? <Load /> : (
+                <ul className={styles.artistList}>
+                    <li className={styles.artistItem}>
+
+                        <h3 
+                        className={styles.artistName}>
+                            {artist.name}
+                        </h3>
+
+                        <img 
+                        className={styles.artistImage}
+                        src={artist.image.find(el => el.size === 'large')['#text']} />
+
+                        <ul className={styles.wrapArtistTags}>
+                        {artist.tags.tag.map(tag => (
+                            <li className={styles.artistTegs} >
+                                <a                                 
+                                key={tag.name} href={tag.url}>
+                                    {tag.name}
+                                </a>
+                            </li>))}
+                        </ul>
+
+                        <p 
+                        className={styles.artistBio} >
+                            {artist.bio.summary}
+                        </p>
                     </li>
                 </ul>
-                }
-            </>
+                )}
+            </div>
         );
     }
 }

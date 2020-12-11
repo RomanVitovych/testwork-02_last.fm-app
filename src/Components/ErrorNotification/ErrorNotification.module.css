@@ -1,5 +1,35 @@
 .errorText {
-    font-size: 32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 5px;
+    right: 25%;
+    font-size: 32px;
     font-weight: 700;
-    color: red;
+    word-wrap: break-word;
+    height: 100px;
+    width: 300px;
+    background-color: red;
+    color: white;
+}
+
+.enterActive {
+    opacity: 0;
+    transform: translateX(100%);
+}
+.enterDone {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 500ms linear;
+}
+
+.exit {
+    opacity: 1;
+    transform: translateX(0);
+}
+.exitActive {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 500ms linear;
 }

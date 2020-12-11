@@ -1,27 +1,66 @@
+.container {
+    max-width: 100%;
+    width: 960px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
 .homeTitle {
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
-    color: blue;
+    margin: 10px 0;
 }
+
+/* ========== home header ========== */
+
+.trackPageHeaderList {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 20px;
+    margin: 20px 0;
+}
+
+.trackPageHeaderList> li {
+    width: 25%;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.horizontalLine {
+    border: 1px solid #000000;
+    margin: 10px 0;
+}
+
+/* ========== home list ========== */
 
 .homeList {
     list-style: none;
     padding: 0 20px;
     margin: 20px 0;
-
 }
 
 .homeListItem {
+    list-style: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    padding: 10px 0;
+    margin: 5px 0;
+}
+
+.homeListItem:focus,
+.homeListItem:hover {
+    background: gray;
 }
 
 .homeListItem> p {
     width: 25%;
-    display: inline-block;
+    text-align: left;
     word-wrap: break-word;
     text-transform: capitalize;
     padding: 0 10px;
@@ -29,16 +68,26 @@
 
 .homeListItem> a {
     width: 25%;
-    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+    color: lightpink;
     word-wrap: break-word;
+    /* text-transform: capitalize; */
+    transition: all 0.3s linear;
     padding: 0 10px;
+}
+
+.homeListItem> a:focus,
+.homeListItem> a:hover {
+    transform: scale(1.2, 1.2);
 }
 
 .homeListItem> img {
     padding: 5px;
 }
 
-.homeListItem:nth-child(3n-7) {
+/* .homeListItem:nth-child(3n-7) {
     background-color: chartreuse;
 }
 
@@ -48,28 +97,25 @@
 
 .homeListItem:nth-child(3n-5) {
     background-color: cyan;
-}
+} */
 
 .track {
     font-size: 18px;
     font-weight: 500;
+    text-align: left;
 }
 
 .artist {
     font-size: 18px;
     font-weight: 700;
-    color: blue;
-    text-decoration: none;
+    text-align: left;
     padding: 0 10px;
-    /* transition: all 0.5s linear; */
+    color: lightpink;
+    transition: all 0.3s linear;
 }
 
 .artist:focus,
 .artist:hover {
-    transform: scale(1.2, 1.2);
+    transform: scale(1.1, 1.1);
 }
 
-.horizontalLine {
-    border: 2px solid #000000;
-    margin: 10px 0;
-}

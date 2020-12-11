@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import SearchForm from '../../Components/SearchForm/SearchForm';
 import Load from '../../Components/Load/Load';
@@ -48,45 +48,52 @@ class TrackPage extends Component {
 
     render() {
         const {tracks, isLoading, error, message} = this.state;
-        console.log(tracks);
-        const {match, location} = this.props;
+        // console.log(tracks);
         return (
-            <div>
+            <div className={styles.container}>
+
                 <SearchForm onSubmit={this.handleChangeQuery} />
 
                 {error && <ErrorNotification message={message} />}
 
-                {isLoading ? <Load /> : (
-                     <ul className={styles.homeList} >
-                     {tracks.length > 0 && tracks.map(track => (
-                         <li 
-                        //  className={styles.homeListItem}
-                         key={track.name} >
-                             <p className={styles.track} >Track: {track.name}</p>
-                             <Link 
-                             to={{
-                                 pathname: `${match.url}tracks/${track.artist.mbid}`,
-                                 state: {from: location}}} >
-                                 <p className={styles.artist} >Artist: {track.artist.name}</p>
-                             </Link>
-                             <img 
-                             src={track.image.find(el => el.size === 'medium')['#text']} 
-                             alt={track.artist.name}
-                              />
-                             <a href={track.artist.url} >{track.artist.url}</a>
-                         </li>
-                     )) }
-                 </ul>
-                // <ul>
-                //     {tracks.length > 0 && tracks.map(track => (
-                //         <li
-                //         key={track.artist} >
-                //             <p>{tracks.trackmatches.track.artist}</p>
-                //             <p>asfasfafa</p>
-                //         </li>
-                //     ))}
-                // </ul>
-                )}
+                <ul className={styles.trackPageHeaderList}>
+                    <li className={styles.listNumbers}>#</li>
+                    <li className={styles.listName}>Track</li>
+                    <li className={styles.listName}>Artist</li>
+                </ul>
+
+                <hr className={styles.horisontalLineTrackPage} />
+
+                {isLoading ? <Load /> :
+                    <TransitionGroup
+                    component='ul'
+                    className={styles.trackPageList}>
+                    {tracks.length > 0 && tracks.map(track => (
+                        <CSSTransition
+                        key={track.name}
+                        timeout={500}
+                        classNames={styles} >
+
+                        <li 
+                        className={styles.trackPageItem}
+                        key={track.name} >
+                            <p 
+                            className={styles.symbol} >
+                                &#10003;
+                            </p>
+                            <p 
+                            className={styles.trackPageName}>
+                                {track.name}
+                            </p>
+                            <p 
+                            className={styles.trackPageName}>
+                                {track.artist}
+                            </p>
+                        </li>
+                        </CSSTransition>
+                    )) }
+                    </TransitionGroup>
+                }                 
             </div>
         );
     }
@@ -94,9 +101,3 @@ class TrackPage extends Component {
 
 export default TrackPage;
 
-{/* <Link
-to={{
-    pathname: `${match.url}/${track.id}`,
-    state: {from: location}}} >
-        {track.name}
-</Link> */}

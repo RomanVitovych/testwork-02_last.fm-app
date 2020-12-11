@@ -28,11 +28,19 @@ class Home extends Component {
         const {tracks, isLoading, error, message} = this.state;;
         const {match, location} = this.props;
         return (
-            <>
+            <div className={styles.container} >
                 <h2 className={styles.homeTitle} >Tunes of the week</h2>
-                <hr className={styles.horizontalLine} />
 
                 {error && <ErrorNotification message={message} />}
+
+                <ul className={styles.trackPageHeaderList}>
+                    <li>Track</li>
+                    <li>Artist</li>
+                    <li>Title</li>
+                    <li>Link</li>
+                </ul>
+
+                <hr className={styles.horizontalLine} />
 
                 {isLoading ? <Load /> :
                 <ul className={styles.homeList} >
@@ -40,12 +48,12 @@ class Home extends Component {
                         <li 
                         className={styles.homeListItem}
                         key={track.name} >
-                            <p className={styles.track} >Track: {track.name}</p>
+                            <p className={styles.track}>{track.name}</p>
                             <Link 
                             to={{
                                 pathname: `${match.url}tracks/${track.artist.mbid}`,
                                 state: {from: location}}} >
-                                <p className={styles.artist} >Artist: {track.artist.name}</p>
+                                <p className={styles.artist}>{track.artist.name}</p>
                             </Link>
                             <img 
                             src={track.image.find(el => el.size === 'medium')['#text']} 
@@ -56,7 +64,7 @@ class Home extends Component {
                     )) }
                 </ul>
                 }     
-            </>
+            </div>
         );
     }
 }
