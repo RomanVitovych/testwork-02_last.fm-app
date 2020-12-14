@@ -33,15 +33,17 @@
 
 @keyframes LOGO {
     0% {
-        transform: translateY(-100px);
-        opacity: 0;
+      transform: scale(1) rotate3d(-1, 1, 0, 0deg);
     }
     50% {
-        transform: translateY(0);
-        opacity: 1;
-        transform: rotate(0);
+      transform: scale(0.4) rotate3d(-1, 1, 0, -90deg);
     }
     100% {
-        transform: rotate(360deg);
+      transform: scale(1) rotate3d(-1, 1, 0, -180deg);
     }
-}
+  }
+
+
+
+
+

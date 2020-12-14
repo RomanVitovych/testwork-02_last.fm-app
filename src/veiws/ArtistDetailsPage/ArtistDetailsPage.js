@@ -1,28 +1,29 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Load from '../../Components/Load/Load';
 import ErrorNotification from '../../Components/ErrorNotification/ErrorNotification';
 
-
 import routes from '../routes';
 import tracksApi from '../../services/tracksApi';
+import traksActions from '../../redux/tracks/traksActions';
 import styles from './ArtistDetailsPage.module.css';
 
 class TrackDetailsPage extends Component {
     state = {
         artist: {},
-        isLoading: false,
-        error: null,
+        // isLoading: false,
+        // error: false,
         message: ''
     };
 
     componentDidMount() {
-        this.setState({isLoading: true});
+        this.props.loaderStatus(true);
         tracksApi
         .fetchArtistDetails(this.props.match.params.trackId)
         .then(response => this.setState({artist: response}))
-        .catch(error => this.setState({error, message: error.message}))
-        .finally(() => this.setState({isLoading: false}));
+        .catch(error => this.props.errorStatus(error.message))
+        .finally(() => this.props.loaderStatus(false));
     };
     
 
@@ -35,9 +36,10 @@ class TrackDetailsPage extends Component {
     };
 
     render() {
-        const {artist, error, message} = this.state;
+        const {artist} = this.state;
         // console.log(artist);
         // console.log(Object.keys(artist).length);
+        const {error} = this.props;
         return (
             <div className={styles.container}>
                <button
@@ -47,7 +49,7 @@ class TrackDetailsPage extends Component {
                    Go back
                 </button> 
 
-                {error && <ErrorNotification message={message} />}
+                {error && <ErrorNotification message={error} />}
 
                 {Object.keys(artist).length <= 0 ? <Load /> : (
                 <ul className={styles.artistList}>
@@ -60,13 +62,14 @@ class TrackDetailsPage extends Component {
 
                         <img 
                         className={styles.artistImage}
-                        src={artist.image.find(el => el.size === 'large')['#text']} />
+                        src={artist.image.find(el => el.size === 'large')['#text']}
+                        alt={artist.name} />
 
                         <ul className={styles.wrapArtistTags}>
                         {artist.tags.tag.map(tag => (
-                            <li className={styles.artistTegs} >
+                            <li className={styles.artistTegs} key={tag.name}>
                                 <a                                 
-                                key={tag.name} href={tag.url}>
+                                 href={tag.url}>
                                     {tag.name}
                                 </a>
                             </li>))}
@@ -84,4 +87,14 @@ class TrackDetailsPage extends Component {
     }
 }
 
-export default TrackDetailsPage;
+const mapStateToProps = (state) => ({
+    isLoading: state.musicInfo.loader,
+    error: state.musicInfo.error,
+});
+
+const mapDispatchToProps = {
+    loaderStatus: traksActions.loaderStatus,
+    errorStatus: traksActions.errorStatus,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TrackDetailsPage);

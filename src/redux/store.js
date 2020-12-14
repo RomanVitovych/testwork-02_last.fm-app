@@ -1,7 +1,10 @@
-import { createStore } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import tracksReducer from './tracks/tracksReducer';
 
-const reducer = (state = {}, action) => state; 
-
-const store = createStore(reducer);
+const store = configureStore({
+    reducer: {
+        musicInfo: tracksReducer,
+    },
+});
 
 export default store;

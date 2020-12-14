@@ -15,12 +15,6 @@ const fetchArtistDetails = (trackId) => {
     .then(response => response.data.artist);
 };
 
-// const fetchTags = () => {
-//     return axios
-//     .get(`${urlApi}?method=chart.gettoptags&api_key=${keyApi}&format=json`)
-//     .then(response => response.data);
-// };
-
 const fetchTrackWithQuery = (query) => {
     return axios
     .get(`${urlApi}?method=track.search&track=${query}&api_key=${keyApi}&format=json`)
@@ -30,6 +24,5 @@ const fetchTrackWithQuery = (query) => {
 export default {
     fetchTopTracks,
     fetchArtistDetails,
-    // fetchTags,
     fetchTrackWithQuery
 };

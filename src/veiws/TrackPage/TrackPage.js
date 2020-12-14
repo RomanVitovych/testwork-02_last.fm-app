@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { connect } from 'react-redux';
 
 import SearchForm from '../../Components/SearchForm/SearchForm';
 import Load from '../../Components/Load/Load';
@@ -12,8 +13,8 @@ import styles from './TrackPage.module.css';
 class TrackPage extends Component {
     state = {
         tracks: [],
-        isLoading: false,
-        error: null,
+        // isLoading: false,
+        // error: false,
         message: ''
     };
 
@@ -47,14 +48,15 @@ class TrackPage extends Component {
     };
 
     render() {
-        const {tracks, isLoading, error, message} = this.state;
-        // console.log(tracks);
+        const {tracks} = this.state;
+        const {isLoading, error} = this.props;
+        console.log(isLoading);
         return (
             <div className={styles.container}>
 
                 <SearchForm onSubmit={this.handleChangeQuery} />
 
-                {error && <ErrorNotification message={message} />}
+                {error && <ErrorNotification message={error} />}
 
                 <ul className={styles.trackPageHeaderList}>
                     <li className={styles.listNumbers}>#</li>
@@ -96,8 +98,13 @@ class TrackPage extends Component {
                 }                 
             </div>
         );
-    }
-}
+    };
+};
 
-export default TrackPage;
+const mapStateToProps = (state) => ({
+    isLoading: state.musicInfo.loader,
+    error: state.musicInfo.error,
+});
+
+export default connect(mapStateToProps, null)(TrackPage);
 

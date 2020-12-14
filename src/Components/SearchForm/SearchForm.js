@@ -30,7 +30,8 @@ class SearchForm extends Component {
                     placeholder='please enter track name...'
                     type='text'
                     value={this.state.value}
-                    onChange={this.handleChange} />
+                    onChange={this.handleChange}
+                    required />
                     <button 
                     className={styles.mainButton}
                     type='submit' >

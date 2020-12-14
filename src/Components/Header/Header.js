@@ -10,7 +10,7 @@ const Header = () => {
         <div className={styles.backColor}>
             <div className={styles.container} >
                 <header className={styles.siteHeader} >
-                    <h1 className={styles.siteLogo} >Last.fm</h1>
+                        <h1 className={styles.siteLogo} >Last.fm</h1>
                     <Navigation />
                 </header>
             </div>

@@ -1,37 +1,42 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Load from '../../Components/Load/Load';
 import ErrorNotification from '../../Components/ErrorNotification/ErrorNotification';
 
+import traksActions from '../../redux/tracks/traksActions';
 import tracksApi from '../../services/tracksApi';
 import styles from './Home.module.css';
 
 class Home extends Component {
     state = {
         tracks: [],
-        isLoading: false,
-        error: null,
+        // isLoading: false,
+        // error: false,
         message: ''
     };
 
     componentDidMount() {
-        this.setState({isLoading: true});
+        // this.setState({isLoading: true});
+        this.props.loaderStatus(true)
         tracksApi 
         .fetchTopTracks()
         .then(result => this.setState({tracks: [...result.track]}))
-        .catch(error => this.setState({error, message: error.message}))
-        .finally(() => this.setState({isLoading: false}));
+        // .catch(error => this.setState({error, message: error.message}))
+        .catch(error => this.props.errorStatus(error.message))
+        // .finally(() => this.setState({isLoading: false}));
+        .finally(() => this.props.loaderStatus(false));
     };
     
     render() {
-        const {tracks, isLoading, error, message} = this.state;;
-        const {match, location} = this.props;
-        return (
+        const {tracks} = this.state;
+        const {match, location, isLoading, error} = this.props;
+            return (
             <div className={styles.container} >
                 <h2 className={styles.homeTitle} >Tunes of the week</h2>
 
-                {error && <ErrorNotification message={message} />}
+                {error && <ErrorNotification message={error} />}
 
                 <ul className={styles.trackPageHeaderList}>
                     <li>Track</li>
@@ -69,4 +74,14 @@ class Home extends Component {
     }
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+    isLoading: state.musicInfo.loader,
+    error: state.musicInfo.error,
+});
+
+const mapDispatchToProps = {
+    loaderStatus: traksActions.loaderStatus,
+    errorStatus: traksActions.errorStatus,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
