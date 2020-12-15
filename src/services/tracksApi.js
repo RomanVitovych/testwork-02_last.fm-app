@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const urlApi = 'http://ws.audioscrobbler.com/2.0/';
+const urlApi = 'htttp://ws.audioscrobbler.com/2.0/';
 const keyApi = '5c930abea1023f9769b5509d7ba9509b';
 
 const fetchTopTracks = () => {
